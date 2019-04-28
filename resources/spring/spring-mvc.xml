@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!--扫描控制层下的注解 -->
+    <context:component-scan base-package="com.chinasofti.*.controller"/>
+
+    <!-- 识别mvc提供的注解 -->
+    <mvc:annotation-driven>
+        <!--不使用默认消息转换器 -->
+        <mvc:message-converters register-defaults="false">
+            <!--spring消息转换器 -->
+            <bean class="org.springframework.http.converter.ByteArrayHttpMessageConverter"/>
+            <bean class="org.springframework.http.converter.BufferedImageHttpMessageConverter"/>
+
+            <!--解决@Responcebody中文乱码问题 -->
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <!--配合fastjson支持 -->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="defaultCharset" value="UTF-8"/>
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!--顺序保持这样,避免IE下载出错 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="fastJsonConfig" ref="fastJsonConfig"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--fastJsonConfig -->
+    <bean id="fastJsonConfig" class="com.alibaba.fastjson.support.config.FastJsonConfig">
+        <!--默认编码格式 -->
+        <property name="charset" value="UTF-8"/>
+        <property name="serializerFeatures">
+            <list>
+                <value>WriteNullListAsEmpty</value>
+                <value>WriteDateUseDateFormat</value>
+                <value>PrettyFormat</value>
+                <value>WriteMapNullValue</value>
+                <value>WriteNullStringAsEmpty</value>
+                <value>WriteNullListAsEmpty</value>
+                <value>DisableCircularReferenceDetect</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <!-- 设置视图模板的路径 -->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <!-- 设置视图模板的后缀名 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 提供文件上传bean对象 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置文件上传时的默认的编码 -->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 文件大小限制 -->
+        <property name="maxUploadSize" value="2097152"/>
+    </bean>
+    
+    <!--  <mvc:resources location="/WEB-INF/views/js/" mapping="/js/**"/>
+     <mvc:resources location="/WEB-INF/views/css/" mapping="/css/**"/>
+     <mvc:resources location="/image/" mapping="/image/**"/>-->
+</beans> 
