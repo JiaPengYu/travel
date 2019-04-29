@@ -6,10 +6,6 @@ import com.chinasofti.base.impl.BaseDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
-
-@Repository
-public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements AttractionDao {
-=======
 import java.util.ArrayList;
 import java.util.List;
 
