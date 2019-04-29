@@ -105,16 +105,16 @@
                     <div class="block-body no-margin">
                         <ul class="footer-nav-horizontal">
                             <li>
-                                <a href="page.jsp">首页</a>
+                                <a href="<%=request.getContextPath()%>/page.jsp">首页</a>
                             </li>
                             <li>
                                 <a href="#">友情链接</a>
                             </li>
                             <li>
-                                <a href="contact.jsp">联系我们</a>
+                                <a href="<%=request.getContextPath()%>/contact.jsp">联系我们</a>
                             </li>
                             <li>
-                                <a href="page.jsp">关于我们</a>
+                                <a href="<%=request.getContextPath()%>/page.jsp">关于我们</a>
                             </li>
                         </ul>
                     </div>
@@ -135,17 +135,17 @@
 </footer>
 
 <!-- JS -->
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery.migrate.js"></script>
-<script src="scripts/bootstrap/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/js/jquery.migrate.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/bootstrap/bootstrap.min.js"></script>
 <script>
     var $target_end = $(".best-of-the-week");
 </script>
-<script src="scripts/jquery-number/jquery.number.min.js"></script>
-<script src="scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-<script src="scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-<script src="scripts/easescroll/jquery.easeScroll.js"></script>
-<script src="scripts/sweetalert/dist/sweetalert.min.js"></script>
-<script src="scripts/toast/jquery.toast.min.js"></script>
-<script src="js/demo.js"></script>
-<script src="js/e-magz.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/jquery-number/jquery.number.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/easescroll/jquery.easeScroll.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/scripts/toast/jquery.toast.min.js"></script>
+<script src="<%=request.getContextPath()%>/desk/js/demo.js"></script>
+<script src="<%=request.getContextPath()%>/desk/js/e-magz.js"></script>

@@ -7,8 +7,8 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="brand">
-                        <a href="page.jsp">
-                            <img src="images/logo.png" alt="Magz Logo">
+                        <a href="">
+                            <img src="<%=request.getContextPath()%>/desk/images/logo.png" alt="Magz Logo">
                         </a>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <ul>
                                 <c:forEach begin="0" end="4" var="i">
                                     <li>
-                                        <a href="#${visitedNewsList[i].newsId}">${visitedNewsList[i].newsTitle}</a>
+                                        <a href="">${visitedNewsList[i].newsTitle}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -39,12 +39,12 @@
                     <ul class="nav-icons">
                         <c:if test="${user==null}">
                             <li>
-                                <a href="register.jsp"><i class="ion-person-add"></i>
+                                <a href="<%=request.getContextPath()%>/desk/register.jsp"><i class="ion-person-add"></i>
                                     <div>注册</div>
                                 </a>
                             </li>
                             <li>
-                                <a href="login.jsp"><i class="ion-person"></i>
+                                <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
                                     <div>登陆</div>
                                 </a>
                             </li>
@@ -66,8 +66,8 @@
     <nav class="menu">
         <div class="container">
             <div class="brand">
-                <a href="#">
-                    <img src="images/logo.png" alt="logo">
+                <a href="">
+                    <img src="<%=request.getContextPath()%>/desk/images/logo.png" alt="logo">
                 </a>
             </div>
             <div class="mobile-toggle">
@@ -82,16 +82,16 @@
                         <a>Menu</a>
                     </li>
                     <li class="for-tablet">
-                        <a href="login.jsp">Login</a>
+                        <a href="<%=request.getContextPath()%>/desk/login.jsp">Login</a>
                     </li>
                     <li class="for-tablet">
-                        <a href="register.jsp">Register</a>
+                        <a href="<%=request.getContextPath()%>/desk/register.jsp">Register</a>
                     </li>
                     <li class="dropdown magz-dropdown">
                         <a href="category.jsp">菜单 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="index.jsp">首页</a>
+                                <a href="<%=request.getContextPath()%>/desk/index.jsp">首页</a>
                             </li>
                             <%--<li>--%>
                                 <%--<a href="category.jsp">类别 </a>--%>
@@ -101,16 +101,16 @@
                                     <a href="#">认证<i class="ion-ios-arrow-right"></i></a>
                                     <ul class="dropdown-menu">
                                         <li>
-                                            <a href="login.jsp">登陆</a>
+                                            <a href="<%=request.getContextPath()%>/desk/login.jsp">登陆</a>
                                         </li>
                                         <li>
-                                            <a href="register.jsp">注册</a>
+                                            <a href="<%=request.getContextPath()%>/desk/register.jsp">注册</a>
                                         </li>
                                         <li>
-                                            <a href="forgot.jsp">忘记密码</a>
+                                            <a href="">忘记密码</a>
                                         </li>
                                         <li>
-                                            <a href="reset.jsp">重置密码</a>
+                                            <a href="">重置密码</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -131,16 +131,16 @@
                                 <a href="#">错误页面<i class="ion-ios-arrow-right"></i></a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="403.jsp">403</a>
+                                        <a href="<%=request.getContextPath()%>/desk/403.jsp">403</a>
                                     </li>
                                     <li>
-                                        <a href="404.jsp">404</a>
+                                        <a href="<%=request.getContextPath()%>/desk/404.jsp">404</a>
                                     </li>
                                     <li>
-                                        <a href="500.jsp">500</a>
+                                        <a href="<%=request.getContextPath()%>/desk/500.jsp">500</a>
                                     </li>
                                     <li>
-                                        <a href="503.jsp">503</a>
+                                        <a href="<%=request.getContextPath()%>/desk/503.jsp">503</a>
                                     </li>
                                 </ul>
                             </li>
@@ -148,7 +148,7 @@
                     </li>
 
                     <li>
-                        <a href="<%=request.getContextPath()%>/desk/place.jsp">景点 </a>
+                        <a href="<%=request.getContextPath()%>/attraction/placeList">景点 </a>
                     </li>
                     <%--<li class="dropdown magz-dropdown magz-dropdown-megamenu">--%>
                         <%--<a href="#">景点 <i class="ion-ios-arrow-right"></i>--%>

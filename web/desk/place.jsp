@@ -39,18 +39,15 @@
         <tr>
             <th>景点名称</th>
             <th>图片</th>
-            <th>介绍信息</th>
-            <th>路线</th>
             <th>价格</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${linkList}" var="link">
+        <c:forEach items="${attractionList}" var="list">
             <tr>
-                <td><a href="single.jsp"></a></td>
-                <td>${link.inage}</td>
-                <td>${link.desc}</td>
-                <td>${link.desc}</td>
+                <td><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></td>
+                <td><img src="<%=request.getContextPath()%>/background/image/${list.imageUrl}"></td>
+                <td></td>
             </tr>
         </c:forEach>
         </tbody>
