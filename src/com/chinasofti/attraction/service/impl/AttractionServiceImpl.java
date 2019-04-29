@@ -52,4 +52,9 @@ public class AttractionServiceImpl implements AttractionService {
     public Integer getCount() {
         return attractionDao.getCount();
     }
+
+    @Override
+    public List<Attraction> changePlace(){
+        return attractionDao.changePlace();
+    }
 }

@@ -69,8 +69,8 @@
           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView"/>
-        <!-- 设置视图模板的路径 -->
-        <property name="prefix" value="/background/attraction/"/>
+         <!--设置视图模板的路径-->
+        <property name="prefix" value=""/>
         <!-- 设置视图模板的后缀名 -->
         <property name="suffix" value=".jsp"/>
     </bean>
@@ -88,4 +88,6 @@
      <mvc:resources location="/WEB-INF/views/css/" mapping="/css/**"/>
      <mvc:resources location="/image/" mapping="/image/**"/>-->
     <mvc:resources location="/background/" mapping="/background/**"/>
+    <mvc:resources location="/desk/" mapping="/desk/**"/>
+
 </beans>

@@ -33,7 +33,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("attraction")
+@RequestMapping("/attraction")
 public class AttractionController {
     @Autowired
     private AttractionService attractionService;
@@ -161,6 +161,24 @@ public class AttractionController {
         return mv;
     }
 
+    @RequestMapping("/changePlace")
+    public ModelAndView changePlace(){
 
+        List<Attraction> attractions = attractionService.changePlace();
+
+        ModelAndView modelAndView = new ModelAndView("/desk/index");
+
+        modelAndView.addObject("attractions",attractions);
+        return modelAndView;
+    }
+
+    @RequestMapping("placeList")
+    public ModelAndView placeList(){
+        List<Attraction> attractionList = attractionService.queryAll();
+
+        ModelAndView modelAndView = new ModelAndView("/desk/place");
+        modelAndView.addObject("attractionList",attractionList);
+        return modelAndView;
+    }
 }
 
