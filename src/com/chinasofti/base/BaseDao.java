@@ -28,9 +28,11 @@ public interface BaseDao<T> {
 
     /**
      * 单条查询
+     * 底层代码为 from className where 字段名 = 查询条件
+     * 在service层调用的时候可以指定字段名
      *
-     * @param field
-     * @param id
+     * @param field 实体类中的字段
+     * @param id    查询条件
      * @return
      */
     T query(String field, Integer id);
