@@ -57,5 +57,4 @@ public class AttractionServiceImpl implements AttractionService {
     public List<Attraction> changePlace(){
         return attractionDao.changePlace();
     }
-
 }

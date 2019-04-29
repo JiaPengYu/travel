@@ -89,4 +89,5 @@
      <mvc:resources location="/image/" mapping="/image/**"/>-->
     <mvc:resources location="/background/" mapping="/background/**"/>
     <mvc:resources location="/desk/" mapping="/desk/**"/>
+
 </beans>
