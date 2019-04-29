@@ -47,7 +47,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public List<T> queryByPageBean(PageBean pageBean) {
-        return hibernateTemplate.execute((HibernateCallback<List<T>>) session -> session.createQuery("from " + clz.getSimpleName())
+        return hibernateTemplate.execute(session -> session.createQuery("from " + clz.getSimpleName())
                 .setFirstResult(pageBean.getPageIndex())
                 .setMaxResults(pageBean.getPageCount())
                 .list());
@@ -59,8 +59,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
             @Override
             public T doInHibernate(Session session) throws HibernateException {
                 Query query = session.createQuery("from " + clz.getSimpleName() + " where " + field + " = :id ").setParameter("id", id);
-                T t = (T) query.uniqueResult();
-                return t;
+                return (T) query.uniqueResult();
             }
         });
     }

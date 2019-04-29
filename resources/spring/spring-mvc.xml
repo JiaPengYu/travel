@@ -19,7 +19,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!--扫描控制层下的注解 -->
-    <context:component-scan base-package="com.chinasofti.*.controller"/>
+    <context:component-scan base-package="com.chinasofti.test.controller"/>
 
     <!-- 识别mvc提供的注解 -->
     <mvc:annotation-driven>
@@ -83,8 +83,10 @@
         <!-- 文件大小限制 -->
         <property name="maxUploadSize" value="2097152"/>
     </bean>
-    
+
     <!--  <mvc:resources location="/WEB-INF/views/js/" mapping="/js/**"/>
      <mvc:resources location="/WEB-INF/views/css/" mapping="/css/**"/>
      <mvc:resources location="/image/" mapping="/image/**"/>-->
-</beans> 
+    <mvc:resources location="/background/" mapping="/background/**"/>
+    <mvc:resources location="/desk/" mapping="/desk/**"/>
+</beans>
