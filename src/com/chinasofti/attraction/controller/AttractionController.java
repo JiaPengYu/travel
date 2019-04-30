@@ -154,6 +154,7 @@ public class AttractionController {
     }
 
     /**
+     * 1
      * 景点信息修改
      * @param attraction
      * @return
