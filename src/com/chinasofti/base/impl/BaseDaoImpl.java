@@ -1,10 +1,9 @@
 package com.chinasofti.base.impl;
 
+import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.base.BaseDao;
 import com.chinasofti.base.PageBean;
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;

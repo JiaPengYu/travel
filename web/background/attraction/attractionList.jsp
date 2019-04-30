@@ -11,7 +11,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>友情链接管理</title>
+    <title>景点信息管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -35,12 +35,6 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-            <input type="text" name="username" placeholder="请输入景点名称" autocomplete="off" class="layui-input">
-            <button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-    </div>
     <xblock>
         <button class="layui-btn"
                 onclick="x_admin_show('添加','<%=request.getContextPath()%>/background/attraction/attractionAdd.jsp')">
@@ -91,6 +85,38 @@
         </c:forEach>
         </tbody>
     </table>
+    <div class="page">
+        <div>
+            <c:if test="${pageBean.pageIndex>1}">
+                <a class="prev"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex-1}">&lt;&lt;</a>
+            </c:if>
+            <c:if test="${pageBean.pageIndex<=1}">
+                <a class="prev"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&lt;&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
+                <c:if test="${i==pageBean.pageIndex}">
+                    <span class="current">
+                            ${i}
+                    </span>
+                </c:if>
+                <c:if test="${i!=pageBean.pageIndex}">
+                    <a class="num" href="<%=request.getContextPath()%>/attraction/all?index=${i}">
+                            ${i}
+                    </a>
+                </c:if>
+            </c:forEach>
+            <c:if test="${pageBean.pageIndex<pageBean.pages}">
+                <a class="next"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex+1}">&gt;&gt;</a>
+            </c:if>
+            <c:if test="${pageBean.pageIndex>=pageBean.pages}">
+                <a class="next"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&gt;&gt;</a>
+            </c:if>
+        </div>
+    </div>
 </div>
 <script>
     /*友情链接-删除*/

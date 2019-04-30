@@ -1,7 +1,9 @@
 package com.chinasofti.attraction.dao.impl;
 
+import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
+import com.chinasofti.base.PageBean;
 import com.chinasofti.base.impl.BaseDaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -26,5 +28,14 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
             list.add(attraction);
         }
         return list;
+    }
+    @Override
+    public List<Attraction> queryByPageBean(PageBean pageBean) {
+        /*return hibernateTemplate.execute(session ->
+                session.createQuery("from Attraction").list());*/
+        return hibernateTemplate.execute(session -> session.createQuery("from Attraction")
+                .setFirstResult(pageBean.getPageIndex())
+                .setMaxResults(pageBean.getPageCount())
+                .list());
     }
 }

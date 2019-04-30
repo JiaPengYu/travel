@@ -1,18 +1,24 @@
 package com.chinasofti.attraction.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.role.entity.Role;
+import com.chinasofti.user.entity.User;
 import com.chinasofti.utils.DateUtil;
 import com.chinasofti.utils.JsonUtil;
 import com.chinasofti.utils.StringUtil;
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import jdk.management.resource.internal.inst.StaticInstrumentation;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.*;
 import org.quartz.Job;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +35,9 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -50,7 +58,7 @@ public class AttractionController {
         List<Attraction> attractionList = attractionService.queryAll();
         model.addAttribute("attractionList",attractionList);
         System.out.println(attractionList);
-        return "attractionList";
+        return "/background/attraction/attractionList";
     }
     /**
      * 批量删除景点信息
@@ -87,7 +95,7 @@ public class AttractionController {
     @RequestMapping("/delete")
     @ResponseBody
     public Integer delete(@RequestParam(value = "attractionId")Integer attractionId){
-        System.out.println(attractionId+"==========");
+        System.out.println(attractionId+"sdasdasd");
         List<Attraction> attractionList = attractionService.queryAll();
         Attraction attraction = null;
         for (Attraction a:attractionList){
@@ -119,22 +127,32 @@ public class AttractionController {
      * @return
      */
     @RequestMapping("all")
-    @ResponseBody
-    public JSONObject getAllRoleByPage(HttpServletRequest request) {
+    public String query(HttpServletRequest request, Map<String, Object> map){
         PageBean pageBean = new PageBean();
         // 页码
-        String pageIndex = request.getParameter("page");
-        if (pageIndex != null) {
-            pageBean.setIndex(Integer.parseInt(pageIndex));
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
         }
+        pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
-        String pageCount = request.getParameter("limit");
+        String pageCount = "5";
         pageBean.setPageCount(Integer.parseInt(pageCount));
         // 总条数
-        pageBean.setCount(attractionService.getCount());
-        List<Attraction> attractionList = attractionService.queryByPageBean(pageBean);
-        return JsonUtil.getJsonObject(attractionList, pageBean);
+        pageBean.setCount((int) attractionService.getCount());
+
+        List<Attraction> attractionList = attractionService.queryByPageBean(pageBean );
+
+        for (Attraction attraction : attractionList) {
+            System.out.println(attraction);
+        }
+        map.put("pageBean", pageBean);
+        map.put("attractionList", attractionList);
+//        request.setAttribute("admins", admins);
+        return "/background/attraction/attractionList";
+
     }
+
     /**
      * 景点信息修改
      * @param attraction
@@ -156,7 +174,7 @@ public class AttractionController {
                 break;
             }
         }
-        ModelAndView mv = new ModelAndView("attractionUpdate");
+        ModelAndView mv = new ModelAndView("/background/attraction/attractionUpdate");
         mv.addObject("attraction",attraction);
         return mv;
     }
